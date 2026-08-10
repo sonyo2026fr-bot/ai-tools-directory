@@ -1,0 +1,28 @@
+/* Custom Styles for AI Tools Hub */
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Cairo', 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+.group:hover {
+    transform: translateY(-4px);
+}
