@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جميع الأدوات - AI Tools Hub</title>
+  <meta name="description" content="استكشف جميع أدوات الذكاء الاصطناعي المجانية - نصوص، صور، فيديو، صوت، برمجة، تصميم">
+  <link rel="canonical" href="https://sonyo2026fr-bot.github.io/ai-tools-directory/tools/">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RBS48YW26"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8RBS48YW26');
+  </script>
+  
+  <style>
+    .search-results-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 0.5rem;
+      z-index: 100;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+    }
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .search-result-item:hover {
+      background: var(--gradient-subtle);
+    }
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    .search-result-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .search-result-info {
+      flex: 1;
+    }
+    .search-result-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .search-result-name-ar {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .search-result-category {
+      font-size: 0.8rem;
+      color: var(--primary-light);
+    }
+    .search-result-empty {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+    .tools-counter {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--gradient-subtle);
+      border-radius: 12px;
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+    .tools-counter-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .tools-counter-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .load-more-btn {
+      display: block;
+      margin: 3rem auto 0;
+      padding: 1rem 3rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="../" class="navbar-brand">
+        <div class="logo-icon"><i class="fas fa-robot"></i></div>
+        <span>AI Tools Hub</span>
+      </a>
+      <ul class="navbar-nav" id="navbar-nav">
+        <li><a href="../" class="nav-link">الرئيسية</a></li>
+        <li><a href="./" class="nav-link active">الأدوات</a></li>
+        <li><a href="../about.html" class="nav-link">عن الموقع</a></li>
+        <li><a href="../privacy.html" class="nav-link">الخصوصية</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section style="padding: 140px 0 60px; background: var(--gradient-subtle); border-bottom: 1px solid var(--border);">
+    <div class="container" style="text-align: center;">
+      <span class="section-label">All Tools</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem;">جميع أدوات AI</h1>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">
+        استكشف مجموعتنا الكاملة من أدوات الذكاء الاصطناعي المجانية
+      </p>
+    </div>
+  </section>
+
+  <!-- Search & Filter -->
+  <section style="padding: 60px 0 40px;">
+    <div class="container">
+      <!-- Search -->
+      <div class="search-box" style="margin-bottom: 2rem;" data-aos="fade-up">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" id="search-input" placeholder="ابحث عن أداة AI... (Search for an AI tool...)">
+        <div class="search-results-dropdown hidden" id="search-results"></div>
+      </div>
+      
+      <!-- Tools Counter -->
+      <div class="tools-counter" data-aos="fade-up">
+        <div class="tools-counter-number" id="tools-count">20</div>
+        <div class="tools-counter-label">أداة AI متاحة | AI Tools Available</div>
+      </div>
+      
+      <!-- Categories Filter -->
+      <div class="categories-grid" id="categories-grid" data-aos="fade-up" data-aos-delay="100">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Grid -->
+  <section style="padding: 40px 0 100px;">
+    <div class="container">
+      <div class="tools-grid" id="tools-container" data-aos="fade-up">
+        <!-- Tools rendered by JS -->
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 0.9rem;" id="scroll-hint">
+        <i class="fas fa-arrow-down" style="animation: float 2s ease-in-out infinite;"></i>
+        مرر للأسفل لرؤية المزيد | Scroll down for more
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-icon"><i class="fas fa-robot"></i></div>
+          <h3 style="margin-bottom: 0.75rem;">AI Tools Hub</h3>
+          <p>دليلك الشامل لأفضل أدوات الذكاء الاصطناعي المجانية.</p>
+        </div>
+        <div class="footer-links">
+          <h4>روابط</h4>
+          <ul>
+            <li><a href="../">الرئيسية</a></li>
+            <li><a href="./">الأدوات</a></li>
+            <li><a href="../about.html">عن الموقع</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>قانوني</h4>
+          <ul>
+            <li><a href="../privacy.html">الخصوصية</a></li>
+            <li><a href="../terms.html">الشروط</a></li>
+            <li><a href="../disclaimer.html">إخلاء مسؤولية</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>تواصل</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AI Tools Hub. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/search.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCategories('categories-grid');
+      renderTools(toolsData, 'tools-container');
+      
+      // Update counter
+      document.getElementById('tools-count').textContent = toolsData.length;
+      
+      // Hide scroll hint after scrolling
+      window.addEventListener('scroll', function() {
+        const hint = document.getElementById('scroll-hint');
+        if (hint && window.scrollY > 200) {
+          hint.style.opacity = '0';
+          setTimeout(() => hint.remove(), 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
