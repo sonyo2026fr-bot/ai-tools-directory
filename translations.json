@@ -1,0 +1,31 @@
+{
+  "en": {
+    "site_title": "AI Tools Hub - Best AI Tools Directory",
+    "hero_desc": "Discover and explore the latest AI technologies."
+  },
+  "ar": {
+    "site_title": "AI Tools Hub - دليل أفضل أدوات الذكاء الاصطناعي",
+    "hero_desc": "اكتشف واستكشف أحدث تقنيات الذكاء الاصطناعي."
+  },
+  "fr": {
+    "site_title": "AI Tools Hub - Annuaire des meilleurs outils IA",
+    "hero_desc": "Découvrez et explorez les dernières technologies IA."
+  },
+  "es": {
+    "site_title": "AI Tools Hub - Directorio de las mejores herramientas de IA",
+    "hero_desc": "Descubre y explora las últimas tecnologías de IA."
+  },
+  "de": {
+    "site_title": "AI Tools Hub - Verzeichnis der besten KI-Tools",
+    "hero_desc": "Entdecken Sie die neuesten KI-Technologien."
+  },
+  "tr": {
+    "site_title": "AI Tools Hub - En İyi Yapay Zeka Araçları Dizini",
+    "hero_desc": "En son yapay zeka teknolojilerini keşfedin."
+  },
+  "zh": {
+    "site_title": "AI Tools Hub - 最佳AI工具目录",
+    "hero_desc": "发现并探索最新的人工智能技术。"
+  }
+}
+
