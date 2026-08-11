@@ -6,7 +6,11 @@
     <meta name="impact-site-verification" value="c2abae3a-9b6e-4163-8351-1f28190c8524">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل أدوات الذكاء الاصطناعي - AI Tools Hub</title>
+    
+    <!-- تحسين محركات البحث (SEO Title & Description) -->
+    <title>AI Tools Hub - دليل أفضل أدوات الذكاء الاصطناعي</title>
+    <meta name="description" content="دليل شامل لأفضل أدوات الذكاء الاصطناعي للكتابة، الصور، البرمجة، والتصميم لاختصار الوقت وتطوير عملك.">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -40,7 +44,7 @@
             <span class="bg-blue-500/10 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/20 inline-block mb-4">دليلك الشامل لعالم الذكاء الاصطناعي</span>
             <h1 class="text-4xl sm:text-5xl font-black mb-4 tracking-tight">اكتشف أفضل أدوات <span class="text-blue-500">الذكاء الاصطناعي</span></h1>
             <p class="text-slate-400 text-base sm:text-lg mb-8">ابحث واكتشف مئات الأدوات التقنية المساعدة لتطوير عملك، كتابة محتوئك، وتصميم مشاريعك بكل سهولة.</p>
-            
+
             <!-- Search Bar -->
             <div class="relative max-w-xl mx-auto">
                 <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">
@@ -51,7 +55,7 @@
         </div>
     </section>
 
-    <!-- Guide / Community Section (مباشرة تحت الأدوات والبحث) -->
+    <!-- Guide / Community Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 w-full">
         <div class="bg-gradient-to-r from-blue-900/20 to-slate-900 border border-blue-500/20 rounded-3xl p-6 sm:p-8 shadow-xl">
             <div class="max-w-3xl">
@@ -146,10 +150,10 @@
 
         function renderTools() {
             toolsGrid.innerHTML = '';
-            
+
             const filtered = toolsData.filter(tool => {
                 const matchesCategory = currentCategory === 'all' || tool.category === currentCategory;
-                const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                                       tool.nameAr.includes(searchQuery) ||
                                       tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                                       tool.descriptionAr.includes(searchQuery);
@@ -166,7 +170,7 @@
             filtered.forEach(tool => {
                 const card = document.createElement('div');
                 card.className = 'group bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5';
-                
+
                 card.innerHTML = `
                     <div>
                         <div class="flex items-center justify-between mb-4">
@@ -178,7 +182,7 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-slate-100 group-hover:text-blue-400 transition">${tool.nameAr} (${tool.name})</h3>
                         <p class="text-slate-400 text-sm mb-4 line-clamp-2">${tool.descriptionAr}</p>
-                        
+
                         <div class="flex flex-wrap gap-1.5 mb-6">
                             ${tool.featuresAr.slice(0, 3).map(f => `<span class="bg-slate-800 text-slate-300 text-xs px-2 py-1 rounded">${f}</span>`).join('')}
                         </div>
