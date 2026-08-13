@@ -34,11 +34,13 @@ body{font-family:'Cairo',sans-serif;background:#0f172a;color:#f8fafc;height:100v
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
 .input-area{padding:1rem 0;border-top:1px solid #334155;display:flex;gap:.75rem;align-items:center}
-.chat-input{flex:1;padding:.875rem 1.25rem;background:#1e293b;border:1px solid #334155;border-radius:16px;color:#f8fafc;font-family:inherit;font-size:.95rem;outline:none}
+.chat-input{flex:1;padding:1rem 1.25rem;background:#1e293b;border:1px solid #334155;border-radius:16px;color:#f8fafc;font-family:inherit;font-size:1rem;outline:none}
 .chat-input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15)}
 .chat-input::placeholder{color:#64748b}
-.send-btn{width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:50%;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.send-btn:disabled{opacity:.5;cursor:not-allowed}
+/* تم تكبير زر الإرسال وزيادة مساحته ليصبح مريحاً جداً للضغط */
+.send-btn{width:56px;height:56px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:16px;color:white;font-size:1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(99,102,241,0.4)}
+.send-btn:active{transform:scale(0.95)}
+.send-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
 .suggestions{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;justify-content:center}
 .suggestion-chip{padding:.5rem 1rem;background:#1e293b;border:1px solid #334155;border-radius:50px;font-size:.8rem;color:#94a3b8;cursor:pointer;font-family:inherit}
 .suggestion-chip:hover{border-color:#6366f1;color:#818cf8;background:rgba(99,102,241,.1)}
@@ -121,7 +123,7 @@ async function sendMessage() {
       },
       body: JSON.stringify({
         messages: [
-          {role:'system', content:'You are AI Hub Assistant named مساعد هب. Always reply in Arabic. Help users choose AI tools from the website.'},
+          {role:'system', content:'You are AI Hub Assistant named مساعد هب. Always reply in the exact same language the user is speaking (if Arabic, reply in Arabic; if English, reply in English, etc.). Help users choose AI tools from the website.'},
           ...history
         ]
       })
@@ -129,9 +131,9 @@ async function sendMessage() {
     
     const data = await response.json();
     
-    // إظهار نص الخطأ التقني صريحاً إذا وجد في الرد
     if (!response.ok || data.error) {
-      throw new Error(data.error || 'Server error status: ' + response.status);
+      const errMsg = typeof data.error === 'object' ? JSON.stringify(data.error) : (data.error || 'Server error: ' + response.status);
+      throw new Error(errMsg);
     }
     
     const reply = data.choices?.[0]?.message?.content || 'عذراً، لم يصل رد.';
@@ -142,10 +144,10 @@ async function sendMessage() {
     
   } catch (error) {
     hideTyping();
-    addMessage('bot', '⚠️ خطأ تقني: ' + error.message);
+    addMessage('bot', '⚠️ خطأ: ' + error.message);
   }
   
-  isTyping = false;
+  isTyping, isTyping = false;
   sendBtn.disabled = false;
 }
 
