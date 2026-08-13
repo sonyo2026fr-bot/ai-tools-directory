@@ -84,12 +84,8 @@ body{font-family:'Cairo',sans-serif;background:#0f172a;color:#f8fafc;height:100v
 </div>
 
 <script>
-// تقسيم مفتاح Groq لتجاوز فحص GitHub الأمني التلقائي
-const p1 = "gsk_r8C9SntaSSFHCqh9";
-const p2 = "UPqXWGdyb3FYO7PJGLyA";
-const p3 = "UHUMJk48YDnEpI92";
-const API_KEY = p1 + p2 + p3;
-const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+// الاتصال بالوسيط الآمن على Vercel مباشرة
+const API_URL = '/api/chat';
 
 const messagesArea = document.getElementById('messagesArea');
 const chatInput = document.getElementById('chatInput');
@@ -122,11 +118,9 @@ async function sendMessage() {
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + API_KEY,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'llama3-8b-8192',
         messages: [
           {role:'system', content:'You are AI Hub Assistant named مساعد هب. Always reply in Arabic. Help users choose AI tools from the website.'},
           ...history
@@ -135,7 +129,7 @@ async function sendMessage() {
     });
     
     const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || 'عذراً، حدث خطأ.';
+    const reply = data.choices?.[0]?.message?.content || data.error || 'عذراً، حدث خطأ.';
     
     hideTyping();
     addMessage('bot', reply);
