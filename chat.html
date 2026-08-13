@@ -84,7 +84,6 @@ body{font-family:'Cairo',sans-serif;background:#0f172a;color:#f8fafc;height:100v
 </div>
 
 <script>
-// الاتصال بالوسيط الآمن على Vercel مباشرة
 const API_URL = '/api/chat';
 
 const messagesArea = document.getElementById('messagesArea');
@@ -129,7 +128,13 @@ async function sendMessage() {
     });
     
     const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || data.error || 'عذراً، حدث خطأ.';
+    
+    // إظهار نص الخطأ التقني صريحاً إذا وجد في الرد
+    if (!response.ok || data.error) {
+      throw new Error(data.error || 'Server error status: ' + response.status);
+    }
+    
+    const reply = data.choices?.[0]?.message?.content || 'عذراً، لم يصل رد.';
     
     hideTyping();
     addMessage('bot', reply);
@@ -137,7 +142,7 @@ async function sendMessage() {
     
   } catch (error) {
     hideTyping();
-    addMessage('bot', '⚠️ عذراً، حدث خطأ في الاتصال.');
+    addMessage('bot', '⚠️ خطأ تقني: ' + error.message);
   }
   
   isTyping = false;
