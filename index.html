@@ -247,6 +247,17 @@
     </script>
 
 <!-- زر الشات العائم الكبير والمتحرك -->
+
+<style>
+@keyframes floatPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  70% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+#floatingChatBtn:active { transform: scale(0.92); }
+</style>
+
+<!-- زر الشات العائم الكبير والمتحرك -->
 <a href="chat.html" id="floatingChatBtn" style="position: fixed; bottom: 25px; left: 25px; width: 68px; height: 68px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 8px 25px rgba(99,102,241,0.6); z-index: 9999; text-decoration: none; animation: floatPulse 2s infinite; transition: transform 0.2s;">
 <i class="fas fa-comment-dots"></i>
 </a>
@@ -258,11 +269,10 @@
 }
 #floatingChatBtn:active { transform: scale(0.92); }
 </style>
+
 </body>
 </html>
 
 <!-- زر الدردشة العائم -->
-<a href="chat.html" style="position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 20px rgba(99,102,241,.4);z-index:999;transition:all .3s;animation:pulse-chat 3s infinite" aria-label="تحدث مع مساعد هب">
-  <i class="fas fa-comment-dots"></i>
-</a>
+
 <style>@keyframes pulse-chat{0%,100%{box-shadow:0 4px 20px rgba(99,102,241,.4)}50%{box-shadow:0 4px 30px rgba(99,102,241,.7)}}</style>
